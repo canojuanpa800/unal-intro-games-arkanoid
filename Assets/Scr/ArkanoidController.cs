@@ -15,11 +15,23 @@ public class ArkanoidController : MonoBehaviour
     private List<LevelData> _levels = new List<LevelData>();
     
     private int _currentLevel = 0;
-    
     private int _totalScore = 0;
-
+    
     private Ball _ballPrefab = null;
     private List<Ball> _balls = new List<Ball>();
+    
+    
+    private void Start()
+    {
+        ArkanoidEvent.OnBallReachDeadZoneEvent += OnBallReachDeadZone;
+        ArkanoidEvent.OnBlockDestroyedEvent += OnBlockDestroyed;
+    }
+
+    private void OnDestroy()
+    {
+        ArkanoidEvent.OnBallReachDeadZoneEvent -= OnBallReachDeadZone;
+        ArkanoidEvent.OnBlockDestroyedEvent -= OnBlockDestroyed;
+    }
     
     private void Update()
     {
@@ -33,9 +45,11 @@ public class ArkanoidController : MonoBehaviour
     {
         _currentLevel = 0;
         
-        _totalScore = 0;
         _gridController.BuildGrid(_levels[0]);
         SetInitialBall();
+        
+        ArkanoidEvent.OnGameStartEvent?.Invoke();
+        ArkanoidEvent.OnScoreUpdatedEvent?.Invoke(0, _totalScore);
     }
     
     private void SetInitialBall()
@@ -67,20 +81,7 @@ public class ArkanoidController : MonoBehaviour
         
         _balls.Clear();
     }
-
-    private void Start()
-    {
-        ArkanoidEvent.OnBallReachDeadZoneEvent += OnBallReachDeadZone;
-        ArkanoidEvent.OnBlockDestroyedEvent += OnBlockDestroyed;
-    }
-
-    private void OnDestroy()
-    {
-        ArkanoidEvent.OnBallReachDeadZoneEvent -= OnBallReachDeadZone;
-        ArkanoidEvent.OnBlockDestroyedEvent -= OnBlockDestroyed;
-
-    }
-
+    
     private void OnBallReachDeadZone(Ball ball)
     {
         ball.Hide();
@@ -89,25 +90,29 @@ public class ArkanoidController : MonoBehaviour
 
         CheckGameOver();
     }
-
+    
     private void CheckGameOver()
     {
-        //Game over
         if (_balls.Count == 0)
         {
+            //Game over
             ClearBalls();
             
             Debug.Log("Game Over: LOSE!!!");
+            ArkanoidEvent.OnGameOverEvent?.Invoke();
         }
     }
-
+    
     private void OnBlockDestroyed(int blockId)
     {
+        
         BlockTile blockDestroyed = _gridController.GetBlockBy(blockId);
         if (blockDestroyed != null)
         {
             _totalScore += blockDestroyed.Score;
+            ArkanoidEvent.OnScoreUpdatedEvent?.Invoke(blockDestroyed.Score, _totalScore);
         }
+        
         
         if (_gridController.GetBlocksActive() == 0)
         {
