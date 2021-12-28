@@ -19,6 +19,8 @@ public class ArkanoidController : MonoBehaviour
     
     private Ball _ballPrefab = null;
     private List<Ball> _balls = new List<Ball>();
+
+    public GameObject myPrefab;
     
     
     private void Start()
@@ -111,6 +113,9 @@ public class ArkanoidController : MonoBehaviour
         {
             _totalScore += blockDestroyed.Score;
             ArkanoidEvent.OnScoreUpdatedEvent?.Invoke(blockDestroyed.Score, _totalScore);
+            //condicional de probabilidad
+                    Instantiate(myPrefab, blockDestroyed.transform.position, Quaternion.identity);
+
         }
         
         
