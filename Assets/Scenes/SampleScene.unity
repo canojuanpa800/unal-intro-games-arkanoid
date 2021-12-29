@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 114941405}
   - component: {fileID: 114941407}
   - component: {fileID: 114941406}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: PaddleBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -851,63 +851,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37ec12f0067083a4f90c4b49a06ee613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &792261362
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4725674013886835124, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
-      propertyPath: m_Name
-      value: 50pts
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080847307781676503, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
-      propertyPath: m_RootOrder
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080847307781676503, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080847307781676503, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080847307781676503, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080847307781676503, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080847307781676503, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080847307781676503, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080847307781676503, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080847307781676503, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080847307781676503, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9080847307781676503, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
 --- !u!1 &815611328
 GameObject:
   m_ObjectHideFlags: 0
@@ -1002,8 +945,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _gridController: {fileID: 104192007}
   _levels:
-  - {fileID: 11400000, guid: 463b73f69f9094e4c9936b97ea0b1509, type: 2}
-  myPrefab: {fileID: 4725674013886835124, guid: 26299622d2752dc4b9a8863eec5a19d2, type: 3}
+  - {fileID: 11400000, guid: 67de7904ca0f46c4cb089a546b9d78b9, type: 2}
 --- !u!4 &943298108
 Transform:
   m_ObjectHideFlags: 0
@@ -1645,9 +1587,10 @@ GameObject:
   - component: {fileID: 1669769271}
   - component: {fileID: 1669769272}
   - component: {fileID: 1669769273}
-  m_Layer: 0
+  - component: {fileID: 1669769274}
+  m_Layer: 6
   m_Name: Paddle
-  m_TagString: Untagged
+  m_TagString: Paddle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1697,6 +1640,27 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 1.65, y: 0.44}
   m_Direction: 1
+--- !u!50 &1669769274
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1669769270}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 500
+  m_LinearDrag: 0
+  m_AngularDrag: 0
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!1 &1866919757
 GameObject:
   m_ObjectHideFlags: 0

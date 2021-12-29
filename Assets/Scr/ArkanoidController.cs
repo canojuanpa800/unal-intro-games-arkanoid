@@ -15,13 +15,12 @@ public class ArkanoidController : MonoBehaviour
     private List<LevelData> _levels = new List<LevelData>();
     
     private int _currentLevel = 0;
-    private int _totalScore = 0;
+    private static int _totalScore = 0;
     
     private Ball _ballPrefab = null;
     private List<Ball> _balls = new List<Ball>();
 
-    public GameObject myPrefab;
-    
+    private PowerUp myPrefab = null;    
     
     private void Start()
     {
@@ -92,7 +91,7 @@ public class ArkanoidController : MonoBehaviour
 
         CheckGameOver();
     }
-    
+
     private void CheckGameOver()
     {
         if (_balls.Count == 0)
@@ -104,6 +103,11 @@ public class ArkanoidController : MonoBehaviour
             ArkanoidEvent.OnGameOverEvent?.Invoke();
         }
     }
+
+    public static void PointsTakeOfPowerUp(int points){
+        _totalScore += points;
+        ArkanoidEvent.OnScoreUpdatedEvent?.Invoke(points, _totalScore);
+    }
     
     private void OnBlockDestroyed(int blockId)
     {
@@ -114,8 +118,28 @@ public class ArkanoidController : MonoBehaviour
             _totalScore += blockDestroyed.Score;
             ArkanoidEvent.OnScoreUpdatedEvent?.Invoke(blockDestroyed.Score, _totalScore);
             //condicional de probabilidad
-                    Instantiate(myPrefab, blockDestroyed.transform.position, Quaternion.identity);
-
+                
+                int TypePowerUp= (int)(Random.Range(0, 5));
+                int type = 0;
+                if (TypePowerUp <= 1){
+                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/50pts");
+                    type = 1;
+                }
+                else if(TypePowerUp <= 2) {
+                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/100pts");
+                    type = 2;
+                }
+                else if(TypePowerUp <= 3) {
+                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/250pts");
+                    type = 3;
+                }
+                else{
+                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/500pts");
+                    type = 4;
+                }
+                
+                PowerUp power = Instantiate(myPrefab, blockDestroyed.transform.position, Quaternion.identity);
+                power.setId(type);
         }
         
         
