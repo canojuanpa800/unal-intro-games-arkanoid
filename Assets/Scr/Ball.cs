@@ -37,6 +37,16 @@ public class Ball : MonoBehaviour
         gameObject.SetActive(false);
     }
     
+    public void powerSlow(){
+        Vector2 velocity = _rb.velocity;
+        _rb.velocity = velocity * 0.1f;
+    }
+
+    public void powerFast(){
+        Vector2 velocity = _rb.velocity;
+        _rb.velocity = velocity * 3;
+    }
+
     private void CheckVelocity()
     {
         Vector2 velocity = _rb.velocity;

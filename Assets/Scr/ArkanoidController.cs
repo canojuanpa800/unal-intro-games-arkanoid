@@ -119,7 +119,7 @@ public class ArkanoidController : MonoBehaviour
             ArkanoidEvent.OnScoreUpdatedEvent?.Invoke(blockDestroyed.Score, _totalScore);
             //condicional de probabilidad
                 
-                int TypePowerUp= (int)(Random.Range(0, 5));
+                int TypePowerUp= (int)(Random.Range(0, 7));
                 int type = 0;
                 if (TypePowerUp <= 1){
                     myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/50pts");
@@ -133,9 +133,21 @@ public class ArkanoidController : MonoBehaviour
                     myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/250pts");
                     type = 3;
                 }
-                else{
+                else if(TypePowerUp <= 4){
                     myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/500pts");
                     type = 4;
+                }
+                else if(TypePowerUp <= 5){
+                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/Slow");
+                    type = 5;
+                }
+                else if(TypePowerUp <= 6){
+                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/Fast");
+                    type = 6;
+                }
+                else {
+                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/500pts");
+                    type = 7;
                 }
                 
                 PowerUp power = Instantiate(myPrefab, blockDestroyed.transform.position, Quaternion.identity);
