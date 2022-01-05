@@ -13,7 +13,8 @@ public class PowerUp : MonoBehaviour
     
     void Update()
     {
-        transform.Translate(Vector3.down * Time.deltaTime);    
+        transform.Translate(Vector3.down * Time.deltaTime);
+
     }
 
     void OnTriggerEnter2D(Collider2D collider) 
@@ -46,11 +47,11 @@ public class PowerUp : MonoBehaviour
             }
             else if (this._type == 7){
                 _paddle = GameObject.FindObjectOfType<Paddle>();
-                Debug.LogError(_paddle + "<-- paddle get");
-
+                _paddle.changeCollider(-1);
             }
             else if (this._type == 8){
                 _paddle = GameObject.FindObjectOfType<Paddle>();
+                _paddle.changeCollider(1);
             }
             gameObject.SetActive(false);
         }
