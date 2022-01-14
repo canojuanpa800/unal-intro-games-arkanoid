@@ -51,19 +51,16 @@ public void changeCollider(int change){
     if (size == 1){
         _collider.size = new Vector2(1.2f, _collider.size.y);
         paddleBody.transform.localScale =  new Vector3( 0.6f , paddleBody.transform.localScale.y , paddleBody.transform.localScale.z);
-        Debug.LogError("Entra en 1");
     }
     else if( size == 2)
     {
         _collider.size = new Vector2(1.68f, _collider.size.y);
         paddleBody.transform.localScale =  new Vector3( 0.86f , paddleBody.transform.localScale.y , paddleBody.transform.localScale.z);
-        Debug.LogError("Entra en 2");
     }
     else if (size == 3)
     {
         _collider.size = new Vector2(2.3f, _collider.size.y);
         paddleBody.transform.localScale =  new Vector3( 1.2f , paddleBody.transform.localScale.y , paddleBody.transform.localScale.z);
-        Debug.LogError("Entra en 3");
     }
 } 
 
