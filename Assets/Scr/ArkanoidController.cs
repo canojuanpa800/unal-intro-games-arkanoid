@@ -119,45 +119,53 @@ public class ArkanoidController : MonoBehaviour
             ArkanoidEvent.OnScoreUpdatedEvent?.Invoke(blockDestroyed.Score, _totalScore);
             //condicional de probabilidad
                 
-                int TypePowerUp= (int)(Random.Range(6, 9));
-                int type = 0;
-                if (TypePowerUp <= 1){
-                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/50pts");
-                    type = 1;
-                }
-                else if(TypePowerUp <= 2) {
-                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/100pts");
-                    type = 2;
-                }
-                else if(TypePowerUp <= 3) {
-                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/250pts");
-                    type = 3;
-                }
-                else if(TypePowerUp <= 4){
-                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/500pts");
-                    type = 4;
-                }
-                else if(TypePowerUp <= 5){
-                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/Slow");
-                    type = 5;
-                }
-                else if(TypePowerUp <= 6){
-                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/Fast");
-                    type = 6;
-                }
-                else if (TypePowerUp <= 7){
-                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/Small");
-                    type = 7;
-                }
-                else if (TypePowerUp <= 8){
-                    myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/Large");
-                    type = 8;
-                }else{
-                    Debug.LogError("ERROR NUMBER RANDON DONT EXIST");
-                }
+               int appearPowerUp= (int)(Random.Range(0, 4));
+                if (appearPowerUp == 0){
+                    int TypePowerUp= (int)(Random.Range(0, 5));
+                    int type = 0;
+
+                    if (TypePowerUp <= 0){
+                        int ScorePowerUp= (int)(Random.Range(0, 4));
+                        if (TypePowerUp <= 0){
+                            myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/50pts");
+                            type = 1;
+                        }
+                        else if(TypePowerUp <= 1) {
+                            myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/100pts");
+                            type = 2;
+                        }
+                        else if(TypePowerUp <= 2) {
+                            myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/250pts");
+                            type = 3;
+                        }
+                        else if(TypePowerUp <= 3){
+                            myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/500pts");
+                            type = 4;
+                        }
+                    }
+                    else if(TypePowerUp <= 1){
+                        myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/Slow");
+                        type = 5;
+                    }
+                    else if(TypePowerUp <= 2){
+                        myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/Fast");
+                        type = 6;
+                    }
+                    else if (TypePowerUp <= 3){
+                        myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/Small");
+                        type = 7;
+                    }
+                    else if (TypePowerUp <= 4){
+                        myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/Large");
+                        type = 8;
+                    }else{
+                        Debug.LogError("ERROR NUMBER RANDON DONT EXIST");
+                    }
                 
+
                 PowerUp power = Instantiate(myPrefab, blockDestroyed.transform.position, Quaternion.identity);
                 power.setId(type);
+            }
         }
         
         
