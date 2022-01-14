@@ -1,2 +1,3 @@
 # unal-intro-games-arkanoid
-    in progress power-ups
+   Open project in the branch step-12
+   
