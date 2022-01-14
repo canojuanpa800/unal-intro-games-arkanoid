@@ -126,19 +126,19 @@ public class ArkanoidController : MonoBehaviour
 
                     if (TypePowerUp <= 0){
                         int ScorePowerUp= (int)(Random.Range(0, 4));
-                        if (TypePowerUp <= 0){
+                        if (ScorePowerUp <= 0){
                             myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/50pts");
                             type = 1;
                         }
-                        else if(TypePowerUp <= 1) {
+                        else if(ScorePowerUp <= 1) {
                             myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/100pts");
                             type = 2;
                         }
-                        else if(TypePowerUp <= 2) {
+                        else if(ScorePowerUp <= 2) {
                             myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/250pts");
                             type = 3;
                         }
-                        else if(TypePowerUp <= 3){
+                        else if(ScorePowerUp <= 3){
                             myPrefab = Resources.Load<PowerUp>("Prefabs/PowerUps/500pts");
                             type = 4;
                         }
